@@ -1,0 +1,52 @@
+{% extends 'projects_app/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        {% for project in project %}
+        <div class="col-md-4">
+            <div class="card text-dark mb-3 card-custom-shadow border-secondary card-wrapper">
+                {% if project.project_photo %}
+                    <a href="{% url 'project_html_template' title=project.title %}">
+                        <img class="card-img-top" src="{{ project.project_photo.url }}" alt="{{ project.title }}">
+                    </a>
+                {% endif %}
+                <div class="card-body"> 
+                    <a class="text-dark no-decoration" href="{% url 'project_html_template' title=project.title %}">
+                        <div class="card-title text-primary"> {{ project.title }} </div>
+                    </a>
+
+                    <hr class="hr">
+                    • <small>{{ project.description }}</small> 
+                    <hr class="hr">
+                    <small>
+                        <!-- <span>{{ project.project_type }} with </span>  -->
+                     •   <span> <b> Tech Stack: </b>   </span>
+                    </small> 
+                    <small>
+                        {% for tool_instance in project.tools.all %} 
+                            {{ tool_instance.name }}{% if not forloop.last %} | {% endif %}
+                        {% endfor %}
+                    </small><br>
+                    <hr class="hr">
+                    • {% if project.pdf_file %}
+                        <small><a href="{{ project.pdf_file.url }}" target="_blank">Download File</a>  </small> |
+                    {% else %}
+                        <small> No File to download  </small> |
+                    {% endif %}
+                    <small class="article-content"><a href="{{ project.data_source }} class=text-primary">Data Source</a></small> 
+                    <hr class="hr">
+                    •
+                    <b>
+                        <small class="text-muted"> Analyzed by {{ project.analyst.first_name }} {{ project.analyst.last_name|slice:":1" }}. </small> |
+
+                        <small class="text-muted">{{ project.published_date|date:"F, d, Y" }}</small>
+                    </b>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

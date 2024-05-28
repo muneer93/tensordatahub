@@ -1,0 +1,79 @@
+body {
+  background-color: #1e1e1e; 
+  font-family: 'Lato', arial, sans-serif;
+  color: #aa9a9a;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background-color: #2a2a2a;
+  border-radius: 5px;
+  /* box-shadow: 0 0px 1px #e0d9d9;  */
+  height: 100%;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+[class^="col-"] {
+  margin-top: 20px;
+}
+
+.container {
+  text-align: center;
+}
+
+.heading {
+  font-size: 33px;
+  color: #aa9a9a;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.icon-style i {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  font-size: medium;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.icon-style a {
+  font-family: 'Lato', arial, sans-serif;
+  color: #aa9a9a;
+  padding: 2px 5px;
+  margin-left: 15px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.about {
+  font-size: 30px;
+  color: #aa9a9a;
+  font-weight: bold;
+  padding-top: 0px;
+}
+.h3 {
+  font-size: 20px;
+  color: #aa9a9a;
+  font-weight: bold;
+  padding-top: 0px;
+}
+
+.about-hr {
+  border: none;
+  border-top: 1px solid #aa9a9a; /* Light colored horizontal line */
+  margin-top: 0px;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+

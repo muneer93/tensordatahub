@@ -1,0 +1,17 @@
+{% extends 'projects_app/base.html' %}
+
+{% block content %}
+<div class="transparent-container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="h2 mb-0"> {{ project.title }} </p>
+                <a href="javascript:history.back()" class="btn btn-light border-dark">
+                     Go Back
+                </a>
+            </div>
+            <iframe srcdoc="{{ html_content }}" style="width:100%; height:700px;"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

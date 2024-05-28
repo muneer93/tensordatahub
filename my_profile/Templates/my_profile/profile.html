@@ -1,0 +1,74 @@
+<!-- index.html -->
+{% extends 'my_profile/base.html' %}
+
+{% block content %}
+
+<!-- Header div card (combined width) -->
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- Content for the header div card goes here -->
+          <div class="row">
+            <div class="col-md-2">
+              <!-- Profile picture -->
+              <img src="path_to_your_profile_picture.jpg" class="img-fluid rounded-circle mb-3" alt="Your Profile Picture">
+            </div>
+            <div class="col-md-10">
+              <!-- Rest of the information -->
+              <div class="p-3">
+                <!-- Name -->
+                <h1>Your Name</h1>
+                <!-- Job title -->
+                <h5>Job Title</h5>
+
+                <div class="icon-container">
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                  <a href="#"><i class="fa fa-github-alt"></i></a>
+                  <a href="#"><i class="fa fa-hacker-news"></i></a>
+                </div>
+                  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+  <!-- First card (25% width) -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <!-- Content for the first card goes here -->
+        <ul class="social list-inline">
+          <li class="favi"><a href="#"><i class="fa fa-envelope"></i></a> <span> emailmuneer1@gmail.com </span></li>
+          <li class="favi"><a href="#"><i class="fa fa-link"></i></a> </li>
+          <li class="favi"><a href="#"><i class="fa fa-globe"></i></a></li>
+          <li class="favi"><a href="#"><i class="fa fa-twitter"></i></a></li>                   
+          <li class="favi"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li class="favi"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li class="favi"><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
+      </ul> 
+
+      </div>
+    </div>
+  </div>
+  <!-- Second card (65% width) -->
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <!-- Content for the second card goes here -->
+        <h5 class="card-title">Second Card</h5>
+        <p>This card occupies 65% of the space.</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum at fugiat aperiam officia asperiores tempore, facilis nisi ipsa impedit id pariatur minus esse distinctio harum molestias reiciendis praesentium, dicta vel.</p>
+        <hr class="divider">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum at fugiat aperiam officia asperiores tempore, facilis nisi ipsa impedit id pariatur minus esse distinctio harum molestias reiciendis praesentium, dicta vel.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
