@@ -3,7 +3,7 @@ from .models import Profile, Experience, Databases
 
 
 def profile(request):
-    profile = Profile.objects.get(user_id=2)
+    profile = Profile.objects.first()
     experience = Experience.objects.all()
     languages = profile.programming_languages.all()
     databases = profile.databases.all()

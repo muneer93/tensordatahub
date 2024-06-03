@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 
 PROJECT_TYPE = [
     ('Data Analysis', 'Data Analysis'),
@@ -35,19 +37,23 @@ class DataAnalysisProject(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
+
     def save(self, *args, **kwargs):
+        # Check if there's an image and it needs to be resized
         if self.project_photo:
-            super().save(*args, **kwargs)
-
-            img = Image.open(self.project_photo.path)
-
+            # Open the image and resize if necessary
+            img = Image.open(self.project_photo)
             if img.height > 450 or img.width > 350:
                 output_size = (450, 350)
                 img.thumbnail(output_size)
-                img.save(self.project_photo.path)
-        else:
-            super().save(*args, **kwargs)
 
+                # Save the resized image to a BytesIO object
+                img_io = BytesIO()
+                img.save(img_io, format=img.format)
+                img_content = ContentFile(img_io.getvalue(), self.project_photo.name)
 
+                # Set the image field to the resized image
+                self.project_photo.save(self.project_photo.name, img_content, save=False)
 
+        # Call the parent class's save method to save the instance
+        super().save(*args, **kwargs)

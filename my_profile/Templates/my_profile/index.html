@@ -5,7 +5,7 @@
         <div class="card card-body border-secondary">
             <img src="{{profile.image.url}}" alt="My Profile Pic">
             <div class="container">
-                <h1 class="heading">{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
+                <h1 class="heading"> {{ profile.user.first_name }} {{ profile.user.last_name }}  </h1>
             </div> 
             <hr class="about-hr">
             <div class="icon-style">
@@ -16,7 +16,7 @@
                     <a href="#">{{ profile.user.email }}</a>
                 </i>
                 <i class="fa fa-external-link-alt text-primary icon">
-                    <a href="{% url 'projects-home' %}">My Data Hub</a>
+                    <a href="{% url 'projects-home' %}" class="text-primary">My Projects Inventory</a>
                 </i>
                 <i class="fa fa-github-alt text-primary icon">
                     <a href="https://github.com/muneer93">Github</a>
@@ -34,7 +34,8 @@
             <h3 class="about">Welcome to my Portfolio!</h3>
             <hr class="about-hr">
             {{ profile.career_summary|linebreaks }}
-            <p>In the meantime, feel free to explore some of my projects here.
+            <p>Feel Free to take a dive into my world of curious projects here.
+            <!-- <p>In the meantime, feel free to explore some of my projects here. -->
                 <a href="{% url 'projects-home' %}" target="_blank" class="btn btn-primary btn-sm">
                     <i class="fa fa-external-link-alt"></i>
                 </a>
