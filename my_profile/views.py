@@ -21,4 +21,4 @@ def profile(request):
         'frameworks': framework,
         'competencies': competencies
     }
-    return render(request, 'my_profile/index.html', context)
+    return render(request, 'my_profile/profile.html', context)

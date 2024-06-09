@@ -7,7 +7,7 @@ def home(request):
     context = {
         'project': project
     }
-    return render(request, 'projects_app/home.html', context)
+    return render(request, 'projects_app/project_home.html', context)
 
 def about(request):
     context = {

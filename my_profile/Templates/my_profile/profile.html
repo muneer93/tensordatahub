@@ -1,74 +1,142 @@
-<!-- index.html -->
 {% extends 'my_profile/base.html' %}
-
 {% block content %}
-
-<!-- Header div card (combined width) -->
 <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <!-- Content for the header div card goes here -->
-          <div class="row">
-            <div class="col-md-2">
-              <!-- Profile picture -->
-              <img src="path_to_your_profile_picture.jpg" class="img-fluid rounded-circle mb-3" alt="Your Profile Picture">
-            </div>
-            <div class="col-md-10">
-              <!-- Rest of the information -->
-              <div class="p-3">
-                <!-- Name -->
-                <h1>Your Name</h1>
-                <!-- Job title -->
-                <h5>Job Title</h5>
+    <div class="col-md-3">
+        <div class="card card-body border-secondary">
+            <img src="{{profile.image.url}}" alt="My Profile Pic" class="profile-pic">
+            <div class="container">
+                <h1 class="heading"> {{ profile.user.first_name }} {{ profile.user.last_name }}  </h1>
+            </div> 
+            <hr class="about-hr">
+            <div class="icon-style">
+                <i class="fa fa-location text-primary icon">
+                    <a href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.542866,11z/data=!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu">{{profile.city}}, {{profile.country}}</a>
+                </i>
+                <i class="fa fa-envelope text-primary icon">
+                    <a href="#">{{ profile.user.email }}</a>
+                </i>
+                <i class="fa fa-external-link-alt text-primary icon">
+                    <a href="{% url 'project_home' %}" class="text-primary">My Projects Inventory</a>
+                </i>
+                <i class="fa fa-github-alt text-primary icon">
+                    <a href="https://github.com/muneer93">Github</a>
+                </i>
+                <i class="fa fa-linkedin text-primary icon">
+                    <a href="https://linkedin.com/in/muneer93">LinkedIn</a>
+                </i>
 
-                <div class="icon-container">
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
-                  <a href="#"><i class="fa fa-github-alt"></i></a>
-                  <a href="#"><i class="fa fa-hacker-news"></i></a>
-                </div>
-                  
 
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-
-<div class="row">
-  <!-- First card (25% width) -->
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <!-- Content for the first card goes here -->
-        <ul class="social list-inline">
-          <li class="favi"><a href="#"><i class="fa fa-envelope"></i></a> <span> emailmuneer1@gmail.com </span></li>
-          <li class="favi"><a href="#"><i class="fa fa-link"></i></a> </li>
-          <li class="favi"><a href="#"><i class="fa fa-globe"></i></a></li>
-          <li class="favi"><a href="#"><i class="fa fa-twitter"></i></a></li>                   
-          <li class="favi"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-          <li class="favi"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-          <li class="favi"><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
-      </ul> 
-
-      </div>
+    <div class="col-md-9">
+        <div class="card card-body border-secondary">
+            <h3 class="about">Welcome to my Portfolio!</h3>
+            <hr class="about-hr">
+            {{ profile.career_summary|linebreaks }}
+            <p>Feel Free to take a dive into my world of curious projects here.
+            <!-- <p>In the meantime, feel free to explore some of my projects here. -->
+                <a href="{% url 'project_home' %}" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fa fa-external-link-alt"></i>
+                </a>
+            </p>
+        </div>
     </div>
-  </div>
-  <!-- Second card (65% width) -->
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-body">
-        <!-- Content for the second card goes here -->
-        <h5 class="card-title">Second Card</h5>
-        <p>This card occupies 65% of the space.</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum at fugiat aperiam officia asperiores tempore, facilis nisi ipsa impedit id pariatur minus esse distinctio harum molestias reiciendis praesentium, dicta vel.</p>
-        <hr class="divider">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum at fugiat aperiam officia asperiores tempore, facilis nisi ipsa impedit id pariatur minus esse distinctio harum molestias reiciendis praesentium, dicta vel.</p>
-      </div>
-    </div>
-  </div>
 </div>
 
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-body border-secondary">
+            <h3 class="h3 text-center">Programming Languages</h3> <hr class="about-hr">
+            <ul>
+                {% for language in languages %}
+                    <li> {{language.name}} </li>
+                {% endfor %}
+            </ul>
+            <h3 class="h3 text-center"> Frameworks & Libraries </h3> 
+            <hr class="about-hr">
+            <ul>
+                {% for framework in frameworks %}
+                    <li>{{framework.name}}</li>        
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body border-secondary">
+            <h3 class="h3 text-center">Data Stack</h3> <hr class="about-hr">
+            <ul>
+                {% for stack in data_stack %}
+                    <li> {{stack.name}} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body border-secondary">
+            <h3 class="h3 text-center">Databases</h3> <hr class="about-hr">
+            <ul>
+                {% for database in databases %}
+                    <li> {{database.name}} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body border-secondary">
+            <h3 class="h3 text-center">Cloud Stack</h3> <hr class="about-hr">
+            <ul>
+                {% for cloudstack in cloud_stack %}
+                    <li> {{cloudstack.name}} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card card-body border-secondary">
+            <div class="container-experience">
+                <h3 class="h3">Work Experience</h3>
+                {% for experience in experiences %}
+                    <b class="text-primary">{{ experience.designation }}</b>
+                    | {{ experience.company }} |
+                    <i class="fa fa-calendar text-primary"></i> 
+                    {{ experience.start_date|date:"M, Y"}} - 
+                        {% if experience.end_date %}
+                            {{ experience.end_date|date:"M, Y"}}
+                        {% else %}
+                            Current
+                        {% endif %} |
+                    <i class="fa fa-location text-primary"></i> 
+                    {{ experience.location }}
+                    <hr class="about-hr">
+                    {% if experience.responsibilities %}
+                        {{ experience.responsibilities|linebreaks }} 
+                    {% endif %}
+                    {% if experience.achievement %}
+                        <b class="text-primary"> Major Projects </b>
+                        {{ experience.achievement|linebreaks }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="col-md-4">
+        <div class="card card-body border-secondary">
+            <h3 class="h3 text-center"> Industries & Competencies </h3> 
+            <hr class="about-hr">
+            {% for competency in competencies %}
+                <ul>
+                    <li> {{competency.name}} </li>
+                </ul>
+            {% endfor %}    
+
+        </div>
+    </div>
+</div>
 {% endblock %}
