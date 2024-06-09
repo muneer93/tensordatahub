@@ -20,7 +20,7 @@ class Tool(models.Model):
 
 class DataAnalysisProject(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    project_type = models.CharField(max_length=35, choices=PROJECT_TYPE, default='Data Analysis')
+    project_type = models.CharField(max_length=100, blank=True, null=True, default='Data Analysis')
     tools = models.ManyToManyField('Tool')
     description = models.CharField(max_length=250, blank=True, null=True)
     published_date = models.DateField(default=timezone.now)
