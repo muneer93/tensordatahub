@@ -33,6 +33,7 @@ body {
     background-color: rgba(255, 255, 255, 0.0); /* Adjust the alpha value (0.1) for 90% transparency */
 }
 
+
 .navbar {
     padding-left: 15px;
     background-color: #2a2a2a;
@@ -54,6 +55,9 @@ body {
     flex-direction: column;
     margin-bottom: 20px; /* Add margin to the bottom of the card-wrapper */
 }
+#pipe{
+    color: red;
+}
 
 .card {
     display: flex;
@@ -64,7 +68,10 @@ body {
     min-height: 450px; /* Set a min height for the card */
     overflow: hidden; /* Hide overflow content */
 }
-
+a{
+    color: #007bff;
+    text-decoration: none;
+}
 .card-img-top {
     width: 100%;
     height: 200px;
@@ -76,10 +83,10 @@ body {
     overflow-y: auto; /* Add vertical scrollbar if content overflows */
     color: #aa9a9a; /* Light white color for text content */
 }
-.card-body small,
+.card-body,
 .card-body b,
 .card-body span,
-.card-body a,
+.card-body,
 .card-body .text-muted {
     color: #aa9a9a !important; /* Light white color for text elements inside card body, overriding any other color */
 }

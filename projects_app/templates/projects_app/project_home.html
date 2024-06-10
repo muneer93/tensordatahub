@@ -12,31 +12,40 @@
                     </a>
                 {% endif %}
                 <div class="card-body"> 
-                    <a class="text-dark no-decoration" href="{% url 'project_html_template' title=project.title %}">
-                        <div class="card-title text-primary"> {{ project.title }} </div>
+                    <a href="{% url 'project_html_template' title=project.title %}">
+                        <div class="card-title"> {{ project.title }} </div>
                     </a>
                     <hr class="hr">
                     <small>{{ project.project_type }}</small> 
                     <hr class="hr">
-                    <small>
-                        <span><b>Tech Stack:</b></span>
-                    </small> 
+
+                        <small class="text-light"> Tech Stack: </small> 
+
                     <small>
                         {% for tool_instance in project.tools.all %} 
-                            {{ tool_instance.name }}{% if not forloop.last %} | {% endif %}
+                            {{ tool_instance.name }}{% if not forloop.last %} • {% endif %}
                         {% endfor %}
                     </small><br>
                     <hr class="hr">
-                    {% if project.pdf_file %}
-                        <small><a href="{{ project.pdf_file.url }}" target="_blank">Download File</a>  </small> |
-                    {% else %}
-                        <small>No File to Download</small> |
-                    {% endif %}
-                    <small class="article-content"><a href="{{ project.data_source }}" class="text-primary">Data Source</a></small> 
+                    
+                    <small>
+                        {% if project.pdf_file %}
+                            <a href="{{project.pdf_file.url}}"> Download File</a> |
+                        {% else %}
+                            <span>No File to Download</span> |
+                        {% endif %}
+                    </small>
+
+
+                    <small class="article-content"><a href="{{ project.data_source }}">Data Source</a></small> 
+
                     <hr class="hr">
                     <b>
-                        <small class="text-muted">Analyst: {{ project.analyst.first_name }} {{ project.analyst.last_name|slice:":1" }}.</small> |
-                        <small class="text-muted">{{ project.published_date|date:"M - Y" }}</small>
+                        <small class="text-light"> Analyst: </small> 
+                        <small class="text-muted">{{ project.analyst.first_name }} 
+                            {{ project.analyst.last_name|slice:":1" }}. |
+                            {{project.published_date|date:"F, Y" }}
+                        </small>
                     </b>
                 </div>
             </div>
