@@ -30,23 +30,23 @@
                     
                     <small>
                         {% if project.pdf_file %}
-                            <a href="{{project.pdf_file.url}}" class="text-primary"> Download File</a> |
+                            <a href="{{project.pdf_file.url}}" class="text-primary"> Download File</a>
                         {% else %}
                             <small class="text-secondary"> No File to Download</small>
                         {% endif %}
                     </small>
 
 
-                    <small class="info article-content"> | <a href="{{ project.data_source }}">Data Source</a></small> 
+                    <small class="info article-content">|<a href="{{ project.data_source }}"> Data Source</a></small> 
 
                     <hr class="hr">
-                    <b>
-                        <small class="text-light"> Analyst: </small> 
-                        <small class="info">{{ project.analyst.first_name }} 
-                            {{ project.analyst.last_name|slice:":1" }}. |
-                            {{project.published_date|date:"F, Y" }}
-                        </small>
-                    </b>
+                    <small class="text-light"> Analyst: </small> 
+
+                    <small class="info">{{ project.analyst.first_name }} 
+                        {{ project.analyst.last_name|slice:":1" }}. |
+                        {{project.published_date|date:"F, Y" }}
+                    </small>
+                    
                 </div>
             </div>
         </div>
