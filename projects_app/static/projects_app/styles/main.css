@@ -13,17 +13,17 @@ body {
 
 .no-decoration {
     text-decoration: none;
-    color: #f5f5f5; /* Light white color */
+    color: #f5f5f5; 
 }
 .btn {
     margin: 5px 10px;
     border-radius: 25px;
 }
 .transparent-container {
-    background-color: rgb(229, 221, 221); /* Adjust the alpha value (0.1) for 90% transparency */
-    width: 95%; /* Set the width to 90% */
-    margin: 15px auto; /* Center the container horizontally */
-    padding: 20px; /* Add padding for better spacing */
+    background-color: rgb(229, 221, 221); 
+    width: 95%; 
+    margin: 15px auto; 
+    padding: 20px; 
     border-radius: 5px;
 }
 
@@ -31,7 +31,7 @@ body {
     margin-top: 25px;
     padding: 25px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.0); /* Adjust the alpha value (0.1) for 90% transparency */
+    background-color: rgba(255, 255, 255, 0.0); 
 }
 
 
@@ -54,7 +54,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px; /* Add margin to the bottom of the card-wrapper */
+    margin-bottom: 20px;
 }
 
 .card {
@@ -79,15 +79,16 @@ a{
     flex: 1;
     background-color: #2a2a2a;
     overflow-y: auto; /* Add vertical scrollbar if content overflows */
-    color: #aa9a9a; /* Light white color for text content */
+    /* color: #aa9a9a;  Light white color for text content */
 }
-.card-body,
-.card-body b,
-.card-body span,
-.card-body,
+/* .card-body b,
 .card-body .text-muted {
-    color: #aa9a9a !important; /* Light white color for text elements inside card body, overriding any other color */
+    color: #aa9a9a !important; /* Light white color for text elements inside card body, overriding any other color 
+} */
+.info{
+    color: #aa9a9a;
 }
+
 .hr{
     border: none;
     border-top: 1px solid #aa9a9a; /* Light colored horizontal line */
