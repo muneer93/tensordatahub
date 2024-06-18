@@ -9,19 +9,19 @@
             </div> 
             <hr class="about-hr">
             <div class="icon-style">
-                <i class="fa fa-location text-primary icon">
+                <i class="fa fa-location icon">
                     <a href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.542866,11z/data=!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu">{{profile.city}}, {{profile.country}}</a>
                 </i>
-                <i class="fa fa-envelope text-primary icon">
-                    <a href="#">{{ profile.user.email }}</a>
+                <i class="fa fa-envelope icon">
+                    <a href="#">{{ profile.user.email }} </a>
                 </i>
-                <i class="fa fa-external-link-alt text-primary icon">
+                <i class="fa fa-external-link-alt icon">
                     <a href="{% url 'project_home' %}">My Projects Inventory</a>
                 </i>
-                <i class="fa fa-github-alt text-primary icon">
+                <i class="fa fa-github-alt icon">
                     <a href="https://github.com/muneer93">Github</a>
                 </i>
-                <i class="fa fa-linkedin text-primary icon">
+                <i class="fa fa-linkedin icon">
                     <a href="https://linkedin.com/in/muneer93">LinkedIn</a>
                 </i>
             </div>
@@ -108,7 +108,7 @@
                             Current
                         {% endif %} |
                     <i class="fa fa-location text-primary"></i> 
-                    {{ experience.location }}
+                    {{ experience.location }} 
                     <hr class="about-hr">
                     {% if experience.responsibilities %}
                         {{ experience.responsibilities|linebreaks }} 

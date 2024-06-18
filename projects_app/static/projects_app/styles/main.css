@@ -83,11 +83,6 @@ a{
     overflow-y: auto; 
 }
 
-/* .card-body b,
-.card-body .text-muted {
-    color: #aa9a9a !important; /* Light white color for text elements inside card body, overriding any other color 
-} */
-
 .info{
     color: #aa9a9a;
 }
