@@ -6,10 +6,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.profile-pic {
+  border-radius: 5px; /* This will make the image circular if it is square, or rounded if rectangular */
+  box-shadow: 0 0 5px #aa9a9a;
+}
+
 .card {
   background-color: #2a2a2a;
-  border-radius: 5px;
-  /* box-shadow: 0 0px 1px #e0d9d9;  */
+  border-radius: 10px;
   height: 100%;
 }
 
@@ -53,6 +57,18 @@ h3 {
   font-weight: bold;
 }
 
+.icon-style a:hover,
+.icon-style a:hover i.fa {
+  color: #007bff; /* Change text color on hover */
+  text-decoration: none; /* Add underline on hover */
+}
+
+.icon-style i:hover,
+.icon-style a:hover i.fa {
+  color: #007bff; /* Change icon color on hover */
+}
+
+
 .about {
   font-size: 30px;
   color: #aa9a9a;
@@ -75,5 +91,3 @@ h3 {
 .btn {
   border-radius: 50px;
 }
-
-

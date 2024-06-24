@@ -27,7 +27,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['16.170.95.87', 'www.thedatamatrix.ca', 'thedatamatrix.ca']
 
 
 # Application definition
@@ -78,23 +79,23 @@ WSGI_APPLICATION = "portfolio_project.wsgi.application"
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql', 
-#         'NAME':  'tensordatahub', 
-#         'USER': os.getenv('USER'),
-#         'PASSWORD': os.getenv('PASSWORD'),
-#         'HOST': 'tensordatahub.crwo8ga0wrhc.eu-north-1.rds.amazonaws.com',
-#         'PORT': '5432'
-#     }
+#    "default": {
+#        "ENGINE": "django.db.backends.sqlite3",
+#        "NAME": BASE_DIR / "db.sqlite3",
+#    }
 # }
+
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql', 
+         'NAME':  'tensordatahub', 
+         'USER': 'muneersuperuser',
+         'PASSWORD': os.getenv('PASSWORD'),
+         'HOST': 'tensordatahub.crwo8ga0wrhc.eu-north-1.rds.amazonaws.com',
+         'PORT': '5432'
+     }
+ }
 
 
 # Password validation
