@@ -5,10 +5,10 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['16.170.95.87', 'www.thedatamatrix.ca', 'thedatamatrix.ca']
-# ALLOWED_HOSTS = [] # For development
+# ALLOWED_HOSTS = ['16.170.95.87', 'www.thedatamatrix.ca', 'thedatamatrix.ca']
+ALLOWED_HOSTS = [] # For development
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -54,23 +54,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "portfolio_project.wsgi.application"
 
-# DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-# }
-
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql', 
-         'NAME':  'tensordatahub', 
-         'USER': 'muneersuperuser',
-         'PASSWORD': os.getenv('PASSWORD'),
-         'HOST': 'tensordatahub.crwo8ga0wrhc.eu-north-1.rds.amazonaws.com',
-         'PORT': '5432'
-     }
- }
+   "default": {
+       "ENGINE": "django.db.backends.sqlite3",
+       "NAME": BASE_DIR / "db.sqlite3",
+   }
+}
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql', 
+#          'NAME':  'tensordatahub', 
+#          'USER': 'muneersuperuser',
+#          'PASSWORD': os.getenv('PASSWORD'),
+#          'HOST': 'tensordatahub.crwo8ga0wrhc.eu-north-1.rds.amazonaws.com',
+#          'PORT': '5432'
+#      }
+#  }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,10 +100,6 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
