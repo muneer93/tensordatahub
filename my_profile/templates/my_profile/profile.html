@@ -5,7 +5,7 @@
         <div class="card card-body border-secondary">
             <img src="{{profile.image.url}}" alt="My Profile Pic" class="profile-pic">
             <div class="container">
-                <h1 class="heading"> {{ profile.user.first_name }} {{ profile.user.last_name }}  </h1>
+                <h1 class="heading text-light"> {{ profile.user.first_name }} {{ profile.user.last_name }}  </h1>
             </div> 
             <hr class="about-hr">
             <div class="icon-style">
@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-9">
         <div class="card card-body border-secondary">
-            <h3 class="about">Welcome to my Portfolio!</h3>
+            <h3 class="about text-light">Welcome to my Portfolio!</h3>
             <hr class="about-hr">
             {{ profile.career_summary|linebreaks }}
             <p>Feel Free to take a dive into my world of curious projects here.
@@ -45,13 +45,13 @@
 <div class="row">
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center">Programming Languages</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Programming Languages</h3> <hr class="about-hr">
             <ul>
                 {% for language in languages %}
                     <li> {{language.name}} </li>
                 {% endfor %}
             </ul>
-            <h3 class="h3 text-center"> Frameworks & Libraries </h3> 
+            <h3 class="h3 text-center text-light"> Frameworks & Libraries </h3> 
             <hr class="about-hr">
             <ul>
                 {% for framework in frameworks %}
@@ -62,7 +62,7 @@
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center">Data Stack</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Data Stack</h3> <hr class="about-hr">
             <ul>
                 {% for stack in data_stack %}
                     <li> {{stack.name}} </li>
@@ -72,7 +72,7 @@
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center">Databases</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Databases</h3> <hr class="about-hr">
             <ul>
                 {% for database in databases %}
                     <li> {{database.name}} </li>
@@ -82,7 +82,7 @@
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center">Cloud Stack</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Cloud Stack</h3> <hr class="about-hr">
             <ul>
                 {% for cloudstack in cloud_stack %}
                     <li> {{cloudstack.name}} </li>
@@ -96,37 +96,36 @@
     <div class="col-md-8">
         <div class="card card-body border-secondary">
             <div class="container-experience">
-                <h3 class="h3">Work Experience</h3>
+                <h3 class="h3 text-light">Work Experience</h3>
                 {% for experience in experiences %}
                     <b class="text-primary">{{ experience.designation }}</b>
-                    | {{ experience.company }} |
+                    | <small class="text-light"> <b>  {{ experience.company }} </b> </small> |
                     <i class="fa fa-calendar text-primary"></i> 
-                    {{ experience.start_date|date:"M, Y"}} - 
+                    <small class="text-light">  <b> {{ experience.start_date|date:"M, Y"}} - 
                         {% if experience.end_date %}
                             {{ experience.end_date|date:"M, Y"}}
                         {% else %}
                             Current
-                        {% endif %} |
+                        {% endif %} 
+                    </b> </small> |
                     <i class="fa fa-location text-primary"></i> 
-                    {{ experience.location }} 
+                    <small class="text-light"> <b> {{ experience.location }} </b> </small>
                     <hr class="about-hr">
                     {% if experience.responsibilities %}
                         {{ experience.responsibilities|linebreaks }} 
                     {% endif %}
                     {% if experience.achievement %}
-                        <b class="text-primary"> Major Projects </b>
+                        <b class="text-primary"> Projects </b>
                         {{ experience.achievement|linebreaks }}
                     {% endif %}
                 {% endfor %}
             </div>
         </div>
     </div>
-    
-
 
     <div class="col-md-4">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center"> Industries & Competencies </h3> 
+            <h3 class="h3 text-center text-light"> Industries & Competencies </h3> 
             <hr class="about-hr">
             {% for competency in competencies %}
                 <ul>
