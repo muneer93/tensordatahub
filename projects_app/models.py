@@ -27,10 +27,10 @@ class DataAnalysisProject(models.Model):
     analyst = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     problem_statement = models.TextField(blank=True, null=True)
     insights = models.TextField(blank=True, null=True)
-    html_file = models.FileField(upload_to='html_files/', default='default.html', blank=True, null=True)
-    pdf_file = models.FileField(upload_to='pdf_files/', blank=True, null=True)
-    project_photo = models.ImageField(upload_to='project_pics/', blank=True, null=True)
-    data_source = models.URLField(max_length=250, default='local.io', blank=True, null=True)
+    html_file = models.FileField(upload_to='html_files/', default='default.html', blank=True, null=True, max_length=250)
+    pdf_file = models.FileField(upload_to='pdf_files/', blank=True, null=True, max_length=250)
+    project_photo = models.ImageField(upload_to='project_pics/', blank=True, null=True, max_length=250)
+    data_source = models.URLField(max_length=250, default='https://www.thedatamatrix.ca/', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Data Analysis Projects"
@@ -39,21 +39,16 @@ class DataAnalysisProject(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        # Check if there's an image and it needs to be resized
         if self.project_photo:
-            # Open the image and resize if necessary
             img = Image.open(self.project_photo)
+            
             if img.height > 450 or img.width > 350:
                 output_size = (450, 350)
                 img.thumbnail(output_size)
-
                 # Save the resized image to a BytesIO object
                 img_io = BytesIO()
                 img.save(img_io, format=img.format)
                 img_content = ContentFile(img_io.getvalue(), self.project_photo.name)
-
                 # Set the image field to the resized image
                 self.project_photo.save(self.project_photo.name, img_content, save=False)
-
-        # Call the parent class's save method to save the instance
         super().save(*args, **kwargs)
