@@ -3,17 +3,17 @@
 <div class="row">
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <img src="{{profile.image.url}}" alt="My Profile Pic" class="profile-pic">
+            <img src="{{ profile.image.url }}" alt="My Profile Pic" class="profile-pic">
             <div class="container">
-                <h1 class="heading text-light"> {{ profile.user.first_name }} {{ profile.user.last_name }}  </h1>
+                <h1 class="heading text-light">{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
             </div> 
             <hr class="about-hr">
             <div class="icon-style">
                 <i class="fa fa-location icon">
-                    <a href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.542866,11z/data=!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu">{{profile.city}}, {{profile.country}}</a>
+                    <a href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.542866,11z/data=!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu">{{ profile.city }}, {{ profile.country }}</a>
                 </i>
                 <i class="fa fa-envelope icon">
-                    <a href="#">{{ profile.user.email }} </a>
+                    <a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a>
                 </i>
                 <i class="fa fa-external-link-alt icon">
                     <a href="{% url 'project_home' %}">My Projects Inventory</a>
@@ -32,7 +32,7 @@
             <h3 class="about text-light">Welcome to my Portfolio!</h3>
             <hr class="about-hr">
             {{ profile.career_summary|linebreaks }}
-            <p>Feel Free to take a dive into my world of curious projects here.
+            <p>Feel free to dive into my world of curious projects here.
                 <a href="{% url 'project_home' %}" target="_blank" class="btn btn-primary btn-sm">
                     <i class="fa fa-external-link-alt"></i>
                 </a>
@@ -44,47 +44,51 @@
 <div class="row">
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Programming Languages</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Programming Languages</h3> 
+            <hr class="about-hr">
             <ul>
                 {% for language in languages %}
-                    <li> {{language.name}} </li>
+                    <li>{{ language.name }}</li>
                 {% endfor %}
             </ul>
-            <h3 class="h3 text-center text-light"> Frameworks & Libraries </h3> 
+            <h3 class="h3 text-center text-light">Frameworks & Libraries</h3>
             <hr class="about-hr">
             <ul>
                 {% for framework in frameworks %}
-                    <li>{{framework.name}}</li>        
+                    <li>{{ framework.name }}</li>        
                 {% endfor %}
             </ul>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Data Stack</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Data Stack</h3> 
+            <hr class="about-hr">
             <ul>
                 {% for stack in data_stack %}
-                    <li> {{stack.name}} </li>
+                    <li>{{ stack.name }}</li>
                 {% endfor %}
             </ul>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Databases</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Databases</h3> 
+            <hr class="about-hr">
             <ul>
                 {% for database in databases %}
-                    <li> {{database.name}} </li>
+                    <li>{{ database.name }}</li>
                 {% endfor %}
             </ul>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Cloud Stack</h3> <hr class="about-hr">
+            <h3 class="h3 text-center text-light">Cloud Stack</h3> 
+            <hr class="about-hr">
             <ul>
                 {% for cloudstack in cloud_stack %}
-                    <li> {{cloudstack.name}} </li>
+                    <li>{{ cloudstack.name }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -98,23 +102,23 @@
                 <h3 class="h3 text-light">Work Experience</h3>
                 {% for experience in experiences %}
                     <b class="text-primary">{{ experience.designation }}</b>
-                    | <small class="text-light"> <b>  {{ experience.company }} </b> </small> |
+                    | <small class="text-light"> <b>{{ experience.company }}</b> </small> |
                     <i class="fa fa-calendar text-primary"></i> 
-                    <small class="text-light">  <b> {{ experience.start_date|date:"M, Y"}} - 
+                    <small class="text-light"> <b>{{ experience.start_date|date:"M, Y" }} - 
                         {% if experience.end_date %}
-                            {{ experience.end_date|date:"M, Y"}}
+                            {{ experience.end_date|date:"M, Y" }}
                         {% else %}
                             Current
                         {% endif %} 
                     </b> </small> |
                     <i class="fa fa-location text-primary"></i> 
-                    <small class="text-light"> <b> {{ experience.location }} </b> </small>
+                    <small class="text-light"> <b>{{ experience.location }}</b> </small>
                     <hr class="about-hr">
                     {% if experience.responsibilities %}
                         {{ experience.responsibilities|linebreaks }} 
                     {% endif %}
                     {% if experience.achievement %}
-                        <b class="text-primary"> Projects </b>
+                        <b class="text-primary">Projects</b>
                         {{ experience.achievement|linebreaks }}
                     {% endif %}
                 {% endfor %}
@@ -124,14 +128,13 @@
 
     <div class="col-md-4">
         <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light"> Industries & Competencies </h3> 
+            <h3 class="h3 text-center text-light">Industries & Competencies</h3> 
             <hr class="about-hr">
             {% for competency in competencies %}
                 <ul>
-                    <li> {{competency.name}} </li>
+                    <li>{{ competency.name }}</li>
                 </ul>
             {% endfor %}    
-
         </div>
     </div>
 </div>
