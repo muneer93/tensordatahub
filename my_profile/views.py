@@ -10,7 +10,7 @@ def profile(request):
     cloud_stack = profile.cloud_stack.all()
     frameworks = profile.web_frameworks.all()
     competencies = profile.competencies.all()
-    
+    interests = profile.interests.all()
     context = {
         'profile': profile,
         'experiences': experiences,
@@ -19,6 +19,7 @@ def profile(request):
         'data_stack': data_stack,
         'cloud_stack': cloud_stack,
         'frameworks': frameworks,
-        'competencies': competencies
+        'competencies': competencies,
+        'interests': interests
     }
     return render(request, 'my_profile/profile.html', context)

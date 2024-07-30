@@ -15,6 +15,7 @@ class Profile(models.Model):
     analytics_tools = models.ManyToManyField('AnalyticsTools')
     competencies = models.ManyToManyField('Competencies')
     web_frameworks = models.ManyToManyField('WebFramework')
+    interests = models.ManyToManyField('Interests')
     website = models.URLField(max_length=100, blank=True, null=True)
 
     def __str__(self) -> str:
@@ -109,6 +110,16 @@ class Competencies(models.Model):
 
     class Meta:
         verbose_name_plural = 'Competencies'
+
+
+class Interests(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Interests'
 
 class Experience(models.Model):
     designation = models.CharField(max_length=100, null=True, blank=True)
