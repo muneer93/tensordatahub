@@ -1,13 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import DataAnalysisProject
+from .models import MyProjects, ProjectList
 
 def home(request):
-    project = DataAnalysisProject.objects.all()
+    project_types = ProjectList.objects.all()
+    projects_by_type = {ptype.project_type: MyProjects.objects.filter(project_type=ptype) for ptype in project_types}
+
     context = {
-        'project': project
+    'project_types': project_types,
+    'projects_by_type': projects_by_type,
     }
-    return render(request, 'projects_app/project_home.html', context)
+    return render(request, 'projects_app/project_home1.html', context)
+
 
 def about(request):
     context = {
@@ -17,11 +21,9 @@ def about(request):
 
 
 def project_html_template(request, title):
-    # Retrieve the DataAnalysisProject object using the title
-    project = get_object_or_404(DataAnalysisProject, title=title)
-    # Check if the HTML file path is not empty
+    project = get_object_or_404(MyProjects, title=title)
     if project.html_file:
-        html_content = project.html_file.read().decode('utf-8')  # Read HTML file content
+        html_content = project.html_file.read().decode('utf-8')
         context = {
             'html_content': html_content,
             'project': project

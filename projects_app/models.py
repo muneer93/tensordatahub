@@ -8,7 +8,9 @@ from django.core.files.base import ContentFile
 PROJECT_TYPE = [
     ('Data Analysis', 'Data Analysis'),
     ('Data Engineering', 'Data Engineering'),
-    ('Machine Learning', 'Machine Learning')
+    ('Cybersecurity', 'Cybersecurity'),
+    ('Machine Learning', 'Machine Learning'),
+    ('Artificial Intelligence', 'AI Projects')
 ]
 
 class Tool(models.Model):
@@ -17,10 +19,16 @@ class Tool(models.Model):
     def __str__(self):
         return self.name
 
+class ProjectList(models.Model):
+    project_type = models.CharField(max_length=35, blank=True, null=True, unique=True)
 
-class DataAnalysisProject(models.Model):
+    def __str__(self):
+        return self.project_type
+
+
+class MyProjects(models.Model):
+    project_type = models.ForeignKey(ProjectList, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100, unique=True)
-    project_type = models.CharField(max_length=100, blank=True, null=True, default='Data Analysis')
     tools = models.ManyToManyField('Tool')
     description = models.CharField(max_length=250, blank=True, null=True)
     published_date = models.DateField(default=timezone.now)
@@ -33,10 +41,14 @@ class DataAnalysisProject(models.Model):
     data_source = models.URLField(max_length=250, default='https://www.thedatamatrix.ca/', blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "Data Analysis Projects"
+        verbose_name_plural = "My Projects"
 
-    def __str__(self) -> str:
+    def project_title(self):
         return self.title
+
+    def get_project_type(self):
+        return self.project_type.project_type
+    
 
     def save(self, *args, **kwargs):
         if self.project_photo:
@@ -52,3 +64,4 @@ class DataAnalysisProject(models.Model):
                 # Set the image field to the resized image
                 self.project_photo.save(self.project_photo.name, img_content, save=False)
         super().save(*args, **kwargs)
+
