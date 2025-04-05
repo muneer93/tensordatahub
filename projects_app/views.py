@@ -10,7 +10,7 @@ def home(request):
     'project_types': project_types,
     'projects_by_type': projects_by_type,
     }
-    return render(request, 'projects_app/project_home1.html', context)
+    return render(request, 'projects_app/project_home.html', context)
 
 
 def about(request):
