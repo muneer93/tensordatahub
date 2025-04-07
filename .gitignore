@@ -1,3 +1,4 @@
 .DS_Store
 .env
 thedatamatrix-ec2-key.pem
+venv/
