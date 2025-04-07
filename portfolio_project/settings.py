@@ -2,12 +2,13 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import ast
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ast.literal_eval(os.getenv('ALLOWED_HOSTS', '[]'))
 # ALLOWED_HOSTS = [] # For development
 
 INSTALLED_APPS = [
