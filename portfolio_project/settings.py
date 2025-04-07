@@ -54,6 +54,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "portfolio_project.wsgi.application"
 
+
 # For development 
 # DATABASES = {
 #    "default": {
