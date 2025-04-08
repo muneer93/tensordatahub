@@ -7,9 +7,8 @@ body {
 }
 
 .profile-pic {
-  border-radius: 5px; /* This will make the image circular if it is square, or rounded if rectangular */
+  border-radius: 5px; 
   box-shadow: 0 0 3px #aa9a9a;
-  /* box-shadow: 0 0 15px #e30202; */
 }
 
 .card {
@@ -60,13 +59,13 @@ h3 {
 
 .icon-style a:hover,
 .icon-style a:hover i.fa {
-  color: #007bff; /* Change text color on hover */
-  text-decoration: none; /* Add underline on hover */
+  color: #007bff;
+  text-decoration: none;
 }
 
 .icon-style i:hover,
 .icon-style a:hover i.fa {
-  color: #007bff; /* Change icon color on hover */
+  color: #007bff; 
 }
 
 
@@ -85,7 +84,7 @@ h3 {
 
 .about-hr {
   border: none;
-  border-top: 1px solid #aa9a9a; /* Light colored horizontal line */
+  border-top: 1px solid #aa9a9a;
   margin-top: 0px;
 }
 
