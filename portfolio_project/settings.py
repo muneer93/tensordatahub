@@ -2,12 +2,13 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import ast
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ast.literal_eval(os.getenv('ALLOWED_HOSTS', '[]'))
 # ALLOWED_HOSTS = [] # For development
 
 INSTALLED_APPS = [
@@ -66,9 +67,9 @@ WSGI_APPLICATION = "portfolio_project.wsgi.application"
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql', 
-         'NAME':  os.getenv('NAME'),
-         'USER': os.getenv('USER'),
-         'PASSWORD': os.getenv('PASSWORD'),
+         'NAME':  os.getenv('DB_NAME'),
+         'USER': os.getenv('DB_USER'),
+         'PASSWORD': os.getenv('DB_PASSWORD'),
          'HOST': 'thedatamatrix-db.cxiekieyubvg.us-east-2.rds.amazonaws.com',
          'PORT': '5432'
      }
@@ -99,7 +100,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
