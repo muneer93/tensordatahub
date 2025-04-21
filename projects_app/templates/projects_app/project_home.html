@@ -48,7 +48,7 @@
                                             {% for tool_instance in project.tools.all %} 
                                                 {{ tool_instance.name }}{% if not forloop.last %} • {% endif %}
                                             {% endfor %}</small> 
-                                        </small><br>
+                                        </small>
                                         <hr class="hr">
                                         <small>
                                             {% if project.pdf_file %}

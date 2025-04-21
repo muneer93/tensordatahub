@@ -84,7 +84,7 @@ a{
 
 .hr{
     border: none;
-    border-top: 1px solid #aa9a9a; /* Light colored horizontal line */
+    border-top: 1px solid #aa9a9a; 
   }
 
 .tab-content{
