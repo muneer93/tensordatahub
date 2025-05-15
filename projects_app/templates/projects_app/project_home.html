@@ -46,7 +46,7 @@
                                         <small class="text-light"> Tech Stack: 
                                         <small class="info">
                                             {% for tool_instance in project.tools.all %} 
-                                                {{ tool_instance.name }}{% if not forloop.last %} • {% endif %}
+                                                {{ tool_instance.name }}{% if not forloop.last %}<small class="text-light"> • </small>  {% endif %}
                                             {% endfor %}</small> 
                                         </small>
                                         <hr class="hr">
@@ -60,8 +60,8 @@
                                         <hr class="hr">
                                         <small class="text-light"> Analyst: 
                                         <small class="info">
-                                            {{ project.analyst.first_name }} {{ project.analyst.last_name|slice:":1" }}. 
-                                            <small> | </small> {{ project.published_date|date:"F, Y" }} </small> 
+                                            {{ project.analyst.first_name }} {{ project.analyst.last_name }}
+                                            <small class="text-light"> • </small> {{ project.published_date|date:"F, Y" }} </small> 
                                         </small>
                                     </div>
                                 </div>
