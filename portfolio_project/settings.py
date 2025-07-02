@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     "projects_app",
     "my_profile",
     "storages",
-    "csp"
+    "csp" # Content Security Policy middleware
 ]
 
 MIDDLEWARE = [
@@ -34,15 +34,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "csp.middleware.CSPMiddleware"
+    "csp.middleware.CSPMiddleware" # Content Security Policy middleware
 ]
 
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'",)
-CSP_IMG_SRC = ("'self'", "data:")
-CSP_FONT_SRC = ("'self'",)
-CSP_FRAME_ANCESTORS = ("'none'",)
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ("'self'",),
+        'script-src': ("'self'", 'https://cdn.jsdelivr.net', 'https://stackpath.bootstrapcdn.com', 'https://code.jquery.com'),
+        'style-src': ("'self'", 'https://cdn.jsdelivr.net', 'https://stackpath.bootstrapcdn.com', 'https://cdnjs.cloudflare.com'),
+        'img-src': ("'self'", 'data:', 'https://thedatamatrix.s3.amazonaws.com'),
+        'font-src': ("'self'", 'https://cdn.jsdelivr.net', 'https://stackpath.bootstrapcdn.com', 'https://cdnjs.cloudflare.com'),
+        'frame-ancestors': ("'none'",),
+    }
+}
 
 ROOT_URLCONF = "portfolio_project.urls"
 
@@ -66,23 +70,23 @@ WSGI_APPLICATION = "portfolio_project.wsgi.application"
 
 
 # For development 
-# DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-# }
-
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql', 
-         'NAME':  os.getenv('DB_NAME'),
-         'USER': os.getenv('DB_USER'),
-         'PASSWORD': os.getenv('DB_PASSWORD'),
-         'HOST': 'thedatamatrix-db.cxiekieyubvg.us-east-2.rds.amazonaws.com',
-         'PORT': '5432'
-     }
- }
+   "default": {
+       "ENGINE": "django.db.backends.sqlite3",
+       "NAME": BASE_DIR / "db.sqlite3",
+   }
+}
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql', 
+#          'NAME':  os.getenv('DB_NAME'),
+#          'USER': os.getenv('DB_USER'),
+#          'PASSWORD': os.getenv('DB_PASSWORD'),
+#          'HOST': 'thedatamatrix-db.cxiekieyubvg.us-east-2.rds.amazonaws.com',
+#          'PORT': '5432'
+#      }
+#  }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
