@@ -23,12 +23,6 @@
             </h1>
             <p class="text-xl sm:text-2xl font-light text-gray-400 light-theme:text-gray-600 mb-4">Cybersecurity Professional</p>
             <p class="text-lg text-gray-500 light-theme:text-gray-500 mb-8">{{ profile.city }}, {{ profile.country }}</p>
-            
-            <div class="max-w-3xl mx-auto">
-                <p class="text-md text-gray-300 light-theme:text-gray-700 leading-relaxed type-effect">
-                    {{ profile.career_summary }}<span class="blinking-cursor">|</span>
-                </p>
-            </div>
             {% else %}
             <h1 class="text-4xl sm:text-5xl font-extrabold text-white light-theme:text-gray-800 mb-2">Profile Not Found</h1>
             <p class="text-md text-gray-500 light-theme:text-gray-500">Please create a profile in the admin panel to see your information here.</p>
