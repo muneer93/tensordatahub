@@ -28,8 +28,6 @@ def profile(request):
     experiences = Experience.objects.order_by('-start_date')
     profile_links = ProfileLink.objects.all()
 
-    # Get skills for data section
-    # This is the correct way to get related data from your profile object.
     programming_languages = profile.programming_languages.all() if profile else []
     databases = profile.databases.all() if profile else []
     cloud_stack = profile.cloud_stack.all() if profile else []
@@ -37,11 +35,9 @@ def profile(request):
     analytics_tools = profile.analytics_tools.all() if profile else []
     competencies = profile.competencies.all() if profile else []
     web_frameworks = profile.web_frameworks.all() if profile else []
-    interests = profile.interests.all() if profile else []
+    interests = Interests.objects.all()
     positions = profile.positions.all() if profile else []
 
-    # Get skills for cybersecurity section
-    # The fix is to use the same correct pattern here.
     siem_tools = SIEM.objects.all() if profile else []
     vulnerability_management = VulnerabilityManagement.objects.all() if profile else []
     iam_skills = IAM.objects.all() if profile else []
