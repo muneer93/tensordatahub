@@ -2,12 +2,11 @@ altgraph==0.17.4
 asgiref==3.8.1
 boto3==1.37.37
 botocore==1.37.37
-Django==5.2.3
-django-csp==4.0
+Django==4.2.20
 django-storages==1.14.6
 jmespath==1.0.1
 packaging==25.0
-pillow==11.3.0
+pillow==11.2.1
 psycopg2-binary==2.9.10
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
@@ -15,5 +14,5 @@ s3transfer==0.11.5
 six==1.17.0
 sqlparse==0.5.3
 typing_extensions==4.13.2
-urllib3==2.5.0
+urllib3==1.26.20
 whitenoise==6.9.0
