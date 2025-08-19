@@ -1,159 +1,137 @@
-{% extends 'my_profile/base.html' %}
+{% extends 'projects_app/base.html' %}
+{% load static %}
 {% block content %}
-<div class="row">
-    <div class="col-md-3">
-        <div class="card card-body border-secondary">
-            <img src="{{ profile.image.url }}" alt="My Profile Pic" class="profile-pic">
-            <div class="container">
-                <h1 class="heading text-light">{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
-            </div> 
-            <hr class="about-hr">
-            <div class="icon-style">
-                <i class="fa fa-location icon">
-                    <a href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.542866,11z/data=!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu">{{ profile.city }}, {{ profile.country }}</a>
-                </i>
-                <i class="fa fa-envelope icon">
-                    <a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a>
-                </i>
-                <i class="fa fa-external-link-alt icon">
-                    <a href="{% url 'project_home' %}">My Projects Inventory</a>
-                </i>
-                <i class="fa fa-github-alt icon">
-                    <a href="https://github.com/muneer93">Github</a>
-                </i>
-                <i class="fa fa-linkedin icon">
-                    <a href="https://www.linkedin.com/in/data-driven-muneer/">LinkedIn</a>
-                </i>
+<main id="main-content" class="container mx-auto px-4 pb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-1">
+            <div class="bg-[var(--bg-primary)] rounded-xl shadow-lg p-8">
+                <div class="flex flex-col items-center mb-6">
+                    <img src="{{ profile.image.url }}" alt="{{ profile.user.first_name }}'s Profile Picture" class="w-36 h-36 rounded-full object-cover mb-4 profile-pic">
+                    <h1 class="text-3xl font-bold text-[var(--text-primary)] text-center">{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+                    <p class="text-md text-[var(--text-secondary)] text-center">{{ profile.career_summary|safe }}</p>
+                </div>
+                <div class="border-t border-gray-200 dark:border-gray-700 my-6"></div>
+                <div class="flex flex-col space-y-3 text-[var(--text-secondary)]">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-location-dot"></i>
+                        <span>{{ profile.city }}, {{ profile.country }}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-envelope"></i>
+                        <a href="mailto:{{ profile.user.email }}" class="hover:text-blue-500 transition-colors">{{ profile.user.email }}</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-external-link-alt"></i>
+                        <a href="{% url 'project_home' %}" class="hover:text-blue-500 transition-colors">My Projects Inventory</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-github-alt"></i>
+                        <a href="https://github.com/muneer93" target="_blank" class="hover:text-blue-500 transition-colors">Github</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/data-driven-muneer/" target="_blank" class="hover:text-blue-500 transition-colors">LinkedIn</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-9">
-        <div class="card card-body border-secondary">
-            <h3 class="about text-light">Welcome to my Portfolio!</h3>
-            <hr class="about-hr">
-            {{ profile.career_summary|linebreaks }}
-            <p>Feel free to dive into my world of curious projects here.
-                <a href="{% url 'project_home' %}" target="_blank" class="btn btn-primary btn-sm">
-                    <i class="fa fa-external-link-alt"></i>
-                </a>
-            </p>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Programming Languages</h3> 
-            <hr class="about-hr">
-            <ul>
-                {% for language in languages %}
-                    <li>{{ language.name }}</li>
-                {% endfor %}
-            </ul>
-            <h3 class="h3 text-center text-light">Frameworks & Libraries</h3>
-            <hr class="about-hr">
-            <ul>
-                {% for framework in frameworks %}
-                    <li>{{ framework.name }}</li>        
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Data Stack</h3> 
-            <hr class="about-hr">
-            <ul>
-                {% for stack in data_stack %}
-                    <li>{{ stack.name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Databases</h3> 
-            <hr class="about-hr">
-            <ul>
-                {% for database in databases %}
-                    <li>{{ database.name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Cloud Stack</h3> 
-            <hr class="about-hr">
-            <ul>
-                {% for cloudstack in cloud_stack %}
-                    <li>{{ cloudstack.name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
+        <div class="md:col-span-2 space-y-8">
+            <div class="bg-[var(--bg-primary)] rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Skills & Tools</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Languages</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for language in languages %}
+                                <li>{{ language.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Databases</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for database in databases %}
+                                <li>{{ database.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Data Stack</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for stack in data_stack %}
+                                <li>{{ stack.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Cloud Stack</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for cloudstack in cloud_stack %}
+                                <li>{{ cloudstack.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card card-body border-secondary">
-            <div class="container-experience">
-                <h3 class="h3 text-light">Work Experience</h3>
+            <div class="bg-[var(--bg-primary)] rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Work Experience</h3>
                 {% for experience in experiences %}
-                    <b class="text-primary">{{ experience.designation }}</b>
-                    | <small class="text-light"> <b>{{ experience.company }}</b> </small> |
-                    <i class="fa fa-calendar text-primary"></i> 
-                    <small class="text-light"> <b>{{ experience.start_date|date:"M, Y" }} - 
-                        {% if experience.end_date %}
-                            {{ experience.end_date|date:"M, Y" }}
-                        {% else %}
-                            Current
-                        {% endif %} 
-                    </b> </small> |
-                    <i class="fa fa-location text-primary"></i> 
-                    <small class="text-light"> <b>{{ experience.location }}</b> </small>
-                    <hr class="about-hr">
-                    {% if experience.responsibilities %}
-                        {{ experience.responsibilities|linebreaks }} 
-                    {% endif %}
-                    {% if experience.achievement %}
-                        <b class="text-primary">Projects</b>
-                        {{ experience.achievement|linebreaks }}
-                    {% endif %}
+                <div class="mb-6 last:mb-0">
+                    <h4 class="text-xl font-bold text-blue-500">{{ experience.designation }}</h4>
+                    <p class="text-[var(--text-primary)] font-semibold">{{ experience.company }}</p>
+                    <div class="flex items-center space-x-4 text-[var(--text-secondary)] text-sm mt-1">
+                        <div class="flex items-center space-x-1">
+                            <i class="fa fa-calendar-alt"></i>
+                            <span>{{ experience.start_date|date:"M, Y" }} - 
+                                {% if experience.end_date %}
+                                    {{ experience.end_date|date:"M, Y" }}
+                                {% else %}
+                                    Current
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <i class="fa fa-location-dot"></i>
+                            <span>{{ experience.location }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-[var(--text-primary)] text-sm">
+                        {% if experience.responsibilities %}
+                            <p>{{ experience.responsibilities|linebreaks }}</p>
+                        {% endif %}
+                        {% if experience.achievement %}
+                            <p class="mt-2 text-blue-500 font-semibold">Projects</p>
+                            <p>{{ experience.achievement|linebreaks }}</p>
+                        {% endif %}
+                    </div>
+                </div>
                 {% endfor %}
+            </div>
+
+            <div class="bg-[var(--bg-primary)] rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Competencies & Interests</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Competencies</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for competency in competencies %}
+                                <li>{{ competency.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-[var(--text-primary)] mb-2">Interests</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+                            {% for interest in interests %}
+                                <li>{{ interest.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card card-body border-secondary">
-            <h3 class="h3 text-center text-light">Industries & Competencies</h3> 
-            <hr class="about-hr">
-            {% for competency in competencies %}
-                <ul>
-                    <li>{{ competency.name }}</li>
-                </ul>
-            {% endfor %}    
-            <h3 class="h3 text-center text-light">Interests</h3>
-            <hr class="about-hr">
-            {% for interest in interests %}
-                <ul>
-                    <li> {{ interest.name }} </li>
-                </ul>
-            {% endfor %}
-            
-            <h3 class="h3 text-center text-light">Education</h3>
-            <hr class="about-hr">
-                <ul>
-                    <li> Bachelor Of Commerce (B.Com) <br>
-                     Osmania University, IN - 2011   
-                    </li> <br>
-                    <li> MBA Finance <br>
-                    Kanpur University, IN - 2014</li>
-                </ul>
-
-        </div>
-    </div>
-</div>
+</main>
 {% endblock %}

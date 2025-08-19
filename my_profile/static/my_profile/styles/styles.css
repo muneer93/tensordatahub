@@ -1,0 +1,32 @@
+/* Custom styles to replicate the provided design */
+.gradient-bg {
+    background: #000;
+}
+.card-hover:hover {
+    background-color: #1a1a1a;
+}
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid #6e8efb;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #6e8efb; }
+}
+.timeline-item:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 32px;
+    height: calc(100% - 32px);
+    width: 2px;
+    background: #a777e3;
+}

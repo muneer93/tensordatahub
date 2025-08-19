@@ -1,0 +1,69 @@
+/* Light Theme */
+:root {
+    --bg-gradient-start: #f5f7fa;
+    --bg-gradient-end: #c3cfe2;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Lighter shadow for light mode */
+}
+
+/* Dark Theme */
+.dark {
+    --bg-gradient-start: #1e293b;
+    --bg-gradient-end: #0f172a;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --shadow-color: rgba(0, 0, 0, 0.3); 
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);
+}
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+}
+
+.tech-chip {
+    transition: all 0.2s ease;
+}
+.tech-chip:hover {
+    transform: scale(1.05);
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Dropdown transition */
+.dropdown-menu {
+    transition: all 0.2s ease-out;
+}
+.dropdown-menu.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+}
+.dropdown-menu.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Scroll Animation Styles */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

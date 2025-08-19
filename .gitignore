@@ -2,3 +2,4 @@
 .env
 thedatamatrix-ec2-key.pem
 venv/
+*.pem

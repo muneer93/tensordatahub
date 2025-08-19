@@ -2,43 +2,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'projects_app/styles/main.css' %}">
-
-    {% if title %}
-       <title> The Data Matrix | {{ title }}  </title> 
-    {% else %}
-        <title> The Data Matrix </title>
-    {% endif %}
+    <title> The Data Matrix {% if title %} | {{ title }} {% endif %} </title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="{% static 'projects_app/styles/styles.css' %}">
 </head>
-<body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-sm">
-    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark"> -->
-        <a class="navbar-brand" href="{% url 'project_home' %}">
-            <!-- <img src="{% static 'projects_app/images/TensorStack.png' %}" alt="tensor-stack-logo"> -->
-            <img src="{% static 'projects_app/images/thedatamatrixlogo.png' %}" alt="data-matrix-logo">
-        </a>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ml-auto"> <!-- Use custom CSS to push items to the right -->
-                
-                <li class="nav-item">
-                    <button class="btn btn-primary btn-sm">
-                        <a class="nav-link text-light" href="{% url 'profile' %}">Analyze the Analyst</a>
+<body class="gradient-bg min-h-screen font-sans antialiased">
+    <nav class="bg-[var(--bg-primary)] shadow-sm fixed top-0 w-full z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-[var(--text-primary)]">The Data Matrix</h1>
+                <p class="text-[var(--text-secondary)] text-sm">Transforming raw data into meaningful insights</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative group" id="dropdown-container">
+                    <button class="flex items-center text-[var(--text-primary)] hover:text-blue-600 transition-colors" id="dropdown-toggle">
+                        <span id="current-category">All Projects</span>
+                        <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
                     </button>
-                </li>
-            </ul>
+                    <div class="absolute right-0 mt-2 w-48 bg-[var(--bg-primary)] rounded-md shadow-lg py-1 z-10 border border-[var(--bg-secondary)] dropdown-menu hidden" id="dropdown-content">
+                        <a href="#" class="block px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] dropdown-link" data-category="all">All Projects</a>
+                        {% for ptype in project_types %}
+                            <a href="#" class="block px-4 py-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] dropdown-link" data-category="{{ ptype.project_type|slugify }}">
+                                {{ ptype.project_type }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <a href="{% url 'profile' %}" class="text-[var(--text-primary)] hover:text-blue-600 transition-colors">
+                    <i class="fas fa-user"></i>
+                </a>
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
     {% block content %}{% endblock %}
-    <!-- Bootstrap JavaScript -->
-    <script src="{% static 'projects_app/js/script.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="{% static 'projects_app/js/scripts.js' %}"></script>
 </body>
 </html>
