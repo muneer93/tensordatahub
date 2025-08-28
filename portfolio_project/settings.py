@@ -19,10 +19,115 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
+    # My Apps
     "projects_app",
     "my_profile",
+    #Third party apps
     "storages",
+    "django_ckeditor_5"
 ]
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+            "|",
+            # Image-specific tools for alignment and size
+            "imageStyle:full",
+            "imageStyle:alignLeft",
+            "imageStyle:alignCenter",
+            "imageStyle:alignRight",
+            "|",
+            # Font and text styling tools
+            "fontColor",
+            "fontBackgroundColor",
+            "fontSize",
+            "fontFamily",
+            "|",
+            "undo",
+            "redo",
+        ],
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "|",
+                "imageStyle:alignLeft",
+                "imageStyle:full",
+                "imageStyle:alignRight",
+            ],
+            # Allow full, side, and alignment styles for images
+            "styles": ["full", "side", "alignLeft", "alignRight"],
+        },
+        "fontSize": {
+            "options": [
+                8,
+                10,
+                12,
+                "default",
+                14,
+                16,
+                18,
+                20,
+            ],
+        },
+        "fontFamily": {
+            "options": [
+                "default",
+                "Arial, Helvetica, sans-serif",
+                "Courier New, Courier, monospace",
+                "Georgia, serif",
+                "Lucida Sans Unicode, Lucida Grande, sans-serif",
+                "Tahoma, Geneva, sans-serif",
+                "Times New Roman, Times, serif",
+                "Trebuchet MS, Helvetica, sans-serif",
+                "Verdana, Geneva, sans-serif",
+            ]
+        },
+        "language": "en"
+    },
+
+    # The 'extends' configuration you mentioned, kept for completeness.
+    "extends": {
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "|",
+            "numberedList",
+            "bulletedList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+            "|",
+            "undo",
+            "redo",
+        ],
+        "language": "en"
+    },
+
+    # You can define more custom configurations here, e.g., for comments.
+    "comment_editor": {
+        "toolbar": [
+            "bold",
+            "italic",
+            "link",
+            "|",
+            "undo",
+            "redo",
+        ],
+        "language": "en"
+    },
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

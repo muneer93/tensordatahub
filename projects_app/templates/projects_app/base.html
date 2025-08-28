@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> The Data Matrix {% if title %} | {{ title }} {% endif %} </title>
     
+    <!-- Link to Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Link to your local CSS file -->
     <link rel="stylesheet" href="{% static 'projects_app/styles/styles.css' %}">
 </head>
 <body class="gradient-bg min-h-screen font-sans antialiased">
+    <!-- 
+        Navigation bar. The 'fixed' and 'z-10' classes are crucial here.
+        'fixed' removes it from the normal document flow, and 'z-10' ensures it stays
+        on top of other content.
+    -->
     <nav class="bg-[var(--bg-primary)] shadow-sm fixed top-0 w-full z-10">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div>
@@ -50,8 +58,16 @@
             </div>
         </div>
     </nav>
-    {% block content %}{% endblock %}
     
+    <!-- 
+        This is the updated wrapper for your content block.
+        We've changed 'pt-24' to 'pt-32' to add more top padding,
+        pushing the content down further from the fixed navbar.
+    -->
+    <div class="pt-32 pb-8">
+        {% block content %}{% endblock %}
+    </div>
+
     <script src="{% static 'projects_app/js/scripts.js' %}"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@
                 <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-8">
                     <h3 class="text-2xl font-semibold text-white light-theme:text-gray-800 mb-4">My Journey</h3>
                     <p class="text-gray-300 light-theme:text-gray-700 leading-relaxed mb-6">
-                        With over a decade of experience, I am a data and cybersecurity professional who transforms complex data into actionable insights. My expertise includes data analytics, compliance, predictive analysis, defensive analysis, and Security Operations Center (SOC) analysis.
+                         {{ profile.career_summary|safe }} <br>
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-start">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6 ml-6 flex-1">
                         <h3 class="text-xl font-bold text-white light-theme:text-gray-800">{{ exp.designation }}</h3>
-                        <p class="text-lg text-gray-400 light-theme:text-gray-600 font-medium">{{ exp.company }}</p>
+                        <p class="text-lg text-gray-400 light-theme:text-gray-600 font-medium">{{ exp.company }} - <span class="text-md text-gray-500 light-theme:text-gray-500"> {{ exp.location }} </span> </p>
                         <p class="text-sm text-gray-500 light-theme:text-gray-500 mt-1">
                             {{ exp.start_date|date:"F Y" }} - 
                             {% if exp.end_date %}
@@ -106,85 +106,6 @@
                 {% empty %}
                 <p class="text-gray-500 light-theme:text-gray-500">No experience added yet.</p>
                 {% endfor %}
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="mb-16">
-            <h2 class="text-3xl font-bold text-white light-theme:text-gray-800 mb-6 border-b-2 border-indigo-600 light-theme:border-indigo-600 pb-2">Data & Tech Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Programming Languages -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Programming Languages</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for lang in programming_languages %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ lang.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Databases -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Databases</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for db in databases %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ db.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Data Stack -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Data Stack</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for ds in data_stack %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ ds.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Cloud Stack -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Cloud Stack</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for cs in cloud_stack %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ cs.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Web Frameworks -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Web Frameworks</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for wf in web_frameworks %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ wf.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Competencies -->
-                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Competencies</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for comp in competencies %}
-                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ comp.name }}</span>
-                        {% empty %}
-                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
-                        {% endfor %}
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -267,6 +188,84 @@
             </div>
         </section>
 
+        <!-- Skills Section -->
+        <section id="skills" class="mb-16">
+            <h2 class="text-3xl font-bold text-white light-theme:text-gray-800 mb-6 border-b-2 border-indigo-600 light-theme:border-indigo-600 pb-2">Data & Tech Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Programming Languages -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Programming Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for lang in programming_languages %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ lang.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Databases</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for db in databases %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ db.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Data Stack -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Data Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for ds in data_stack %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ ds.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Cloud Stack -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Cloud Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for cs in cloud_stack %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ cs.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Web Frameworks -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Web Frameworks</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for wf in web_frameworks %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ wf.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Competencies -->
+                <div class="bg-gray-900 light-theme:bg-white rounded-xl shadow-lg light-theme:shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-white light-theme:text-gray-800 mb-3">Competencies</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for comp in competencies %}
+                        <span class="bg-indigo-600 text-white light-theme:text-white text-sm font-medium px-3 py-1 rounded-full">{{ comp.name }}</span>
+                        {% empty %}
+                        <span class="text-gray-500 light-theme:text-gray-500">None added.</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Interests Section -->
         <section id="interests" class="mb-16">
@@ -281,7 +280,7 @@
                 </div>
             </div>
         </section>
-
+    
     </div>
 </main>
 

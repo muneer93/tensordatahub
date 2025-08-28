@@ -4,20 +4,15 @@ from django.contrib.auth.models import User
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+from django_ckeditor_5.fields import CKEditor5Field
 
-PROJECT_TYPE = [
-    ('Data Analysis', 'Data Analysis'),
-    ('Data Engineering', 'Data Engineering'),
-    ('Cybersecurity', 'Cybersecurity'),
-    ('Machine Learning', 'Machine Learning'),
-    ('Artificial Intelligence', 'AI Projects')
-]
 
 class Tool(models.Model):
     name = models.CharField(max_length=25)
 
     def __str__(self):
         return self.name
+
 
 class ProjectList(models.Model):
     project_type = models.CharField(max_length=35, blank=True, null=True, unique=True)
@@ -40,6 +35,9 @@ class MyProjects(models.Model):
     project_photo = models.ImageField(upload_to='project_pics/', default='project_pics/default.jpeg', blank=True, null=True, max_length=250)
     data_source = models.URLField(max_length=250, default='https://www.thedatamatrix.ca/', blank=True, null=True)
 
+    # New field to store rich text content with images, etc.
+    content = CKEditor5Field('content', config_name='default', null=True)
+
     class Meta:
         verbose_name_plural = "My Projects"
 
@@ -49,9 +47,11 @@ class MyProjects(models.Model):
     def project_title(self):
         return self.title
 
+    # The corrected method is here. It was the commented out line.
     def get_project_type(self):
-        return self.project_type.project_type
-    
+        if self.project_type:
+            return self.project_type.project_type
+        return None # Return None or a default value if the foreign key is not set.
 
     def save(self, *args, **kwargs):
         if self.project_photo:
@@ -65,4 +65,3 @@ class MyProjects(models.Model):
                 img_content = ContentFile(img_io.getvalue(), self.project_photo.name)
                 self.project_photo.save(self.project_photo.name, img_content, save=False)
         super().save(*args, **kwargs)
-

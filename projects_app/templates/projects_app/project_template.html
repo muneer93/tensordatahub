@@ -1,17 +1,31 @@
 {% extends 'projects_app/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="transparent-container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="h5 mb-0"> <b> {{ project.title }} </b> </p> 
-                <a href="javascript:history.back()" class="btn btn-primary border-light shadow-lg">
-                     Go Back
-                </a>
-            </div>
-            <iframe srcdoc="{{ html_content }}" style="width:100%; height:700px;"></iframe>
+<div class="main-container">
+    <div class="header-section">
+        <p class="project-title"> <b> {{ project.title }} </b> </p>
+        <a href="javascript:history.back()" class="go-back-btn">
+            Go Back
+        </a>
+    </div>
+
+    <div id="project-content" class="frozen-glass-div">
+        <!-- Project HTML content will be loaded here by JavaScript -->
+        <div class="loading-message">
+            Loading project content...
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const rawHtmlContent = `{{ html_content|escapejs }}`;
+        const targetDiv = document.getElementById('project-content');
+
+        if (targetDiv && rawHtmlContent) {
+            targetDiv.innerHTML = rawHtmlContent.replace(/\\n/g, '').replace(/\\"/g, '"').replace(/\\'/g, "'");
+        }
+    });
+</script>
 {% endblock %}

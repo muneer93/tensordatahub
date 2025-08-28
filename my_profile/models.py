@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_ckeditor_5.fields import CKEditor5Field
 
 # This is the main Profile model
 class Profile(models.Model):
@@ -7,7 +8,8 @@ class Profile(models.Model):
     city = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics/')
-    career_summary = models.TextField(blank=True, null=True)
+    # career_summary = models.TextField(blank=True, null=True)
+    career_summary = CKEditor5Field('Text', config_name='default', null=True, blank=True)
     website = models.URLField(max_length=100, blank=True, null=True)
 
     # Many-to-Many relationships for skills and interests
@@ -21,15 +23,12 @@ class Profile(models.Model):
     web_frameworks = models.ManyToManyField('WebFramework', blank=True)
     interests = models.ManyToManyField('Interests', blank=True)
     
-    # --- IMPORTANT FIXES START HERE ---
-    # These are the missing Many-to-Many relationships for cybersecurity skills
     siem_tools = models.ManyToManyField('SIEM', blank=True)
     vulnerability_management = models.ManyToManyField('VulnerabilityManagement', blank=True)
     iam_skills = models.ManyToManyField('IAM', blank=True)
     security_frameworks = models.ManyToManyField('SecurityFrameworks', blank=True)
     network_analysis = models.ManyToManyField('NetworkAnalysis', blank=True)
     general_cybersecurity = models.ManyToManyField('GeneralCybersecurity', blank=True)
-    # --- IMPORTANT FIXES END HERE ---
 
     def __str__(self) -> str:
         return f'{self.user.first_name} Profile'
@@ -58,8 +57,10 @@ class Experience(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
-    responsibilities = models.TextField(blank=True, null=True)
-    achievement = models.TextField(blank=True, null=True)
+    # responsibilities = models.TextField(blank=True, null=True)
+    # achievement = models.TextField(blank=True, null=True)
+    responsibilities = CKEditor5Field('Responsibilities', config_name='default', null=True)
+    achievement = CKEditor5Field('Achievements', config_name='default', null=True)
 
     def __str__(self):
         return f"{self.designation} - {self.company}"

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import MyProjects, ProjectList
 
@@ -21,14 +21,15 @@ def about(request):
 
 
 def project_html_template(request, title):
+    # This correctly fetches the project object from the database.
+    # The get_object_or_404 function will return a 404 error if the project is not found.
     project = get_object_or_404(MyProjects, title=title)
-    if project.html_file:
-        html_content = project.html_file.read().decode('utf-8')
-        context = {
-            'html_content': html_content,
-            'project': project
-        }
-        return render(request, 'projects_app/project_template.html', context)
-    else:
 
-        return render(request, 'not_found.html')
+    # We create a context dictionary and pass the entire project object to the template.
+    context = {
+        'project': project,
+    }
+
+    # Now, we render a new, dynamic template called 'project_detail.html'
+    # The template will use Django's template language to display the project data.
+    return render(request, 'projects_app/project_detail.html', context)
