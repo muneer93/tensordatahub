@@ -6,10 +6,10 @@ import ast
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ast.literal_eval(os.getenv('ALLOWED_HOSTS', '[]'))
-# ALLOWED_HOSTS = [] # For development
+# ALLOWED_HOSTS = ast.literal_eval(os.getenv('ALLOWED_HOSTS', '[]'))
+ALLOWED_HOSTS = [] # For development
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -163,23 +163,23 @@ WSGI_APPLICATION = "portfolio_project.wsgi.application"
 
 
 # For development 
-# DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-# }
-
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql', 
-         'NAME':  os.getenv('DB_NAME'),
-         'USER': os.getenv('DB_USER'),
-         'PASSWORD': os.getenv('DB_PASSWORD'),
-         'HOST': 'thedatamatrix-db.cxiekieyubvg.us-east-2.rds.amazonaws.com',
-         'PORT': '5432'
-     }
- }
+   "default": {
+       "ENGINE": "django.db.backends.sqlite3",
+       "NAME": BASE_DIR / "db.sqlite3",
+   }
+}
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql', 
+#          'NAME':  os.getenv('DB_NAME'),
+#          'USER': os.getenv('DB_USER'),
+#          'PASSWORD': os.getenv('DB_PASSWORD'),
+#          'HOST': 'thedatamatrix-db.cxiekieyubvg.us-east-2.rds.amazonaws.com',
+#          'PORT': '5432'
+#      }
+#  }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
