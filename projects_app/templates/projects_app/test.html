@@ -3,74 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAML Flowchart</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <title>AI Analytics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 2rem;
-            background-color: #f0f4f8;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1a28; /* Deep blue-gray background */
+            color: #d1d9e6; /* Off-white text for high contrast */
+        }
+        .container {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 2rem;
         }
-        h1 {
-            color: #1a202c;
-            margin-bottom: 1rem;
-        }
-        p {
-            max-width: 800px;
-            text-align: center;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        .mermaid {
-            background-color: #ffffff;
-            padding: 1.5rem;
+        .card {
+            background-color: #1a2a38; /* Slightly lighter card background */
             border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 90%;
-            height: auto;
-            overflow: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 1px solid #2e3d4c;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+        .btn-primary {
+            background-color: #4CAF50; /* A nice green accent color */
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+        .input-file {
+            background-color: #2e3d4c;
+            color: #d1d9e6;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #4e5d6d;
+            cursor: pointer;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .chart-axis line, .chart-axis path {
+            stroke: #667e9c;
+        }
+        .chart-axis text {
+            fill: #667e9c;
+        }
+        .d3-chart svg {
+            overflow: visible;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100">
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-bold mb-8 text-center text-teal-400">AI Analytics Dashboard</h1>
+        
+        <!-- Input and Control Area -->
+        <div class="w-full max-w-4xl p-6 mb-8 card flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div class="flex-1 w-full flex items-center space-x-2">
+                <label for="file-upload" class="font-semibold whitespace-nowrap">Upload File:</label>
+                <input type="file" id="file-upload" class="input-file flex-1" />
+            </div>
+            <button id="analyze-btn" class="btn btn-primary w-full md:w-auto flex items-center justify-center space-x-2">
+                <span id="analyze-text">Analyze with AI Agent</span>
+                <div id="loading-spinner" class="hidden loading-spinner"></div>
+            </button>
+        </div>
 
-    <h1>SAML Implementation Flow</h1>
-    <p>This diagram illustrates the Service Provider-Initiated SAML authentication process, a common flow for single sign-on.</p>
-    
-    <div class="mermaid">
-        graph TD
-            subgraph "Service Provider (SP)"
-                SP_Init[User tries to access protected resource on SP] --> SP_AuthReq{SP sends an <br>Authentication Request};
-            end
+        <!-- Report Selection Dropdown -->
+        <div class="w-full max-w-4xl p-6 mb-8 card flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+            <label for="report-select" class="font-semibold whitespace-nowrap">View Saved Reports:</label>
+            <select id="report-select" class="input-file flex-1">
+                <option value="">Select a report</option>
+            </select>
+        </div>
 
-            subgraph "Identity Provider (IdP)"
-                IdP_Recieve[IdP receives <br>AuthNRequest from SP] --> IdP_Auth{IdP authenticates <br>the user};
-                IdP_Auth -- Authenticated --> IdP_CreateResp[IdP creates and signs <br>a SAML Assertion];
-            end
-
-            User[User]
-            SP_Init -- Redirect --> User;
-            User -- Redirect with AuthNRequest --> IdP_Recieve;
-            IdP_CreateResp -- Post Back --> User;
-            User -- Post to SP --> SP_Validate[SP validates the <br>SAML Assertion];
-            SP_Validate -- Valid --> SP_GrantAccess[SP grants user <br>access to resource];
-            SP_Validate -- Invalid --> SP_DenyAccess[SP denies access];
-
-            style IdP_Auth fill:#e0f2fe,stroke:#38bdf8,stroke-width:2px;
-            style SP_Validate fill:#e0f2fe,stroke:#38bdf8,stroke-width:2px;
-
-            classDef normalBox fill:#f9fafb,stroke:#e5e7eb,stroke-width:1px,color:#1f2937;
-            class User normalBox;
+        <!-- Dashboard Content Area -->
+        <div id="dashboard-container" class="w-full max-w-6xl mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dashboard content will be dynamically generated here -->
+        </div>
     </div>
 
     <script>
-        mermaid.initialize({ startOnLoad: true });
+        const fileInput = document.getElementById('file-upload');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const analyzeText = document.getElementById('analyze-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const reportSelect = document.getElementById('report-select');
+        const dashboardContainer = document.getElementById('dashboard-container');
+
+        // --- Simulated Data and API Responses ---
+        const MOCK_REPORTS = [
+            {
+                id: 'report-1',
+                title: 'Website Traffic Analysis',
+                raw_data: '...',
+                dashboard_data: [
+                    {
+                        type: 'summary',
+                        title: 'Executive Summary',
+                        content: 'This report analyzes website traffic for the last quarter. We observed a significant increase in mobile users, a stable conversion rate, and peak traffic hours in the late afternoon. The majority of new users are from North America.'
+                    },
+                    {
+                        type: 'bar_chart',
+                        title: 'Traffic by Device Type',
+                        data: {
+                            labels: ['Mobile', 'Desktop', 'Tablet'],
+                            values: [4500, 3200, 1100],
+                            color: '#5d82b0'
+                        },
+                        description: 'Total user sessions broken down by device type. This shows a clear dominance of mobile traffic.'
+                    },
+                    {
+                        type: 'line_chart',
+                        title: 'Traffic by Hour of Day',
+                        data: {
+                            labels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'],
+                            values: [200, 350, 410, 380, 550, 600, 780, 850],
+                            color: '#e7a25d'
+                        },
+                        description: 'User sessions over a typical day, highlighting peak activity in the late afternoon.'
+                    },
+                    {
+                        type: 'summary',
+                        title: 'Geographic Breakdown',
+                        content: 'The majority of sessions (45%) originate from the United States, followed by the United Kingdom (20%) and Germany (10%). Other regions contribute the remaining 25%.'
+                    }
+                ]
+            },
+            {
+                id: 'report-2',
+                title: 'E-commerce Conversion Funnel',
+                raw_data: '...',
+                dashboard_data: [
+                    {
+                        type: 'summary',
+                        title: 'Conversion Funnel Analysis',
+                        content: 'This report details the conversion funnel from product view to purchase. The largest drop-off point is at the cart review stage, suggesting potential friction in the user journey.'
+                    },
+                    {
+                        type: 'bar_chart',
+                        title: 'Conversion Funnel Stages',
+                        data: {
+                            labels: ['Product View', 'Add to Cart', 'Checkout', 'Purchase'],
+                            values: [1000, 750, 500, 420],
+                            color: '#89b48b'
+                        },
+                        description: 'The number of users successfully completing each stage of the funnel.'
+                    }
+                ]
+            }
+        ];
+
+        // Function to simulate a call to the AI agent
+        function callGeminiAPI(rawFileContent) {
+            return new Promise(resolve => {
+                // Simulate network delay
+                setTimeout(() => {
+                    // For POC, return a random mock report.
+                    const randomReport = MOCK_REPORTS[Math.floor(Math.random() * MOCK_REPORTS.length)];
+                    resolve(randomReport.dashboard_data);
+                }, 2000); // 2-second delay
+            });
+        }
+
+        // Function to render the dashboard from structured data
+        function renderDashboard(data, dashboardTitle) {
+            dashboardContainer.innerHTML = ''; // Clear previous content
+            
+            const titleElement = document.createElement('h2');
+            titleElement.className = 'col-span-1 md:col-span-2 lg:col-span-3 text-3xl font-bold mb-6 text-center text-blue-400';
+            titleElement.textContent = dashboardTitle;
+            dashboardContainer.appendChild(titleElement);
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card p-6 rounded-lg shadow-lg';
+
+                const title = document.createElement('h3');
+                title.className = 'text-xl font-semibold mb-2 text-sky-400';
+                title.textContent = item.title;
+                card.appendChild(title);
+
+                const description = document.createElement('p');
+                description.className = 'text-gray-400 mb-4 text-sm';
+                description.textContent = item.description || '';
+                card.appendChild(description);
+
+                if (item.type === 'summary') {
+                    const content = document.createElement('p');
+                    content.className = 'text-gray-300';
+                    content.textContent = item.content;
+                    card.appendChild(content);
+                } else if (item.type === 'bar_chart' || item.type === 'line_chart') {
+                    const svg = d3.create('svg');
+                    const margin = {top: 20, right: 20, bottom: 40, left: 50};
+                    const width = 450 - margin.left - margin.right;
+                    const height = 300 - margin.top - margin.bottom;
+
+                    svg.attr('viewBox', `0 0 450 300`);
+                    svg.style('width', '100%').style('height', '100%');
+                    
+                    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+                    
+                    const x = d3.scaleBand()
+                        .domain(item.data.labels)
+                        .range([0, width])
+                        .padding(0.1);
+                    
+                    const y = d3.scaleLinear()
+                        .domain([0, d3.max(item.data.values) * 1.1])
+                        .range([height, 0]);
+
+                    g.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x)).attr('class', 'chart-axis');
+                    g.append('g').call(d3.axisLeft(y)).attr('class', 'chart-axis');
+
+                    if (item.type === 'bar_chart') {
+                        g.selectAll('.bar')
+                            .data(item.data.values)
+                            .enter().append('rect')
+                            .attr('class', 'bar')
+                            .attr('x', (d, i) => x(item.data.labels[i]))
+                            .attr('y', d => y(d))
+                            .attr('width', x.bandwidth())
+                            .attr('height', d => height - y(d))
+                            .attr('fill', item.data.color);
+                    } else if (item.type === 'line_chart') {
+                         const line = d3.line()
+                            .x((d, i) => x(item.data.labels[i]) + x.bandwidth() / 2)
+                            .y(d => y(d));
+
+                        g.append("path")
+                            .datum(item.data.values)
+                            .attr("fill", "none")
+                            .attr("stroke", item.data.color)
+                            .attr("stroke-width", 2)
+                            .attr("d", line);
+
+                        g.selectAll(".dot")
+                            .data(item.data.values)
+                            .enter().append("circle")
+                            .attr("class", "dot")
+                            .attr("cx", (d, i) => x(item.data.labels[i]) + x.bandwidth() / 2)
+                            .attr("cy", d => y(d))
+                            .attr("r", 4)
+                            .attr("fill", item.data.color);
+                    }
+                    card.appendChild(svg.node());
+                }
+                
+                dashboardContainer.appendChild(card);
+            });
+        }
+
+        // Populate the dropdown with mock reports
+        function populateReportsDropdown() {
+            reportSelect.innerHTML = '<option value="">Select a report</option>'; // Reset dropdown
+            MOCK_REPORTS.forEach(report => {
+                const option = document.createElement('option');
+                option.value = report.id;
+                option.textContent = report.title;
+                reportSelect.appendChild(option);
+            });
+        }
+
+        // --- Event Listeners ---
+        analyzeBtn.addEventListener('click', async () => {
+            if (!fileInput.files.length) {
+                // Using custom modal instead of alert
+                alert('Please select a file to upload.');
+                return;
+            }
+            
+            // Show loading state
+            analyzeBtn.disabled = true;
+            analyzeText.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = async (event) => {
+                const rawFileContent = event.target.result;
+                // Simulating the backend call to the Gemini API
+                const dashboardData = await callGeminiAPI(rawFileContent);
+                
+                // For a real app, you would save this to the database here
+                // Then you'd refresh the dropdown with the new report
+                const newReport = {
+                    id: `new-${Date.now()}`,
+                    title: `Dynamic Report from ${file.name}`,
+                    raw_data: rawFileContent,
+                    dashboard_data: dashboardData
+                };
+                MOCK_REPORTS.push(newReport); // Add to mock data
+                populateReportsDropdown();
+                reportSelect.value = newReport.id;
+                renderDashboard(newReport.dashboard_data, newReport.title);
+
+                // Hide loading state
+                analyzeBtn.disabled = false;
+                analyzeText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            };
+
+            reader.readAsText(file);
+        });
+
+        reportSelect.addEventListener('change', (event) => {
+            const selectedId = event.target.value;
+            if (selectedId) {
+                const selectedReport = MOCK_REPORTS.find(r => r.id === selectedId);
+                if (selectedReport) {
+                    renderDashboard(selectedReport.dashboard_data, selectedReport.title);
+                }
+            } else {
+                dashboardContainer.innerHTML = '';
+            }
+        });
+
+        // Initialize the app on page load
+        window.onload = function() {
+            populateReportsDropdown();
+        };
     </script>
 </body>
 </html>

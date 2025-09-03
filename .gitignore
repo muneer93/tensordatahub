@@ -3,3 +3,5 @@
 thedatamatrix-ec2-key.pem
 venv/
 *.pem
+__pycache__/
+migrations/
